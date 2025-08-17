@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Spotify social application monorepo containing two main applications:
+This is "Songs of a Feather" - a Spotify social application monorepo containing two main applications:
 
 1. **apps/api** - Python Flask backend API that handles Spotify OAuth, playlist management, and user relationships
 2. **apps/web** - Next.js 15 frontend application with TypeScript and Tailwind CSS
@@ -39,17 +39,21 @@ npm run lint         # Run ESLint
 
 ### Flask Backend (apps/api/)
 ```bash
-cd apps/api
-# Setup Python environment
-uv venv                          # Create virtual environment with uv
+# Setup Python environment (from root directory)
+uv venv .venv                    # Create virtual environment with uv
 source .venv/bin/activate        # Activate virtual environment (macOS/Linux)
 # .venv\Scripts\activate         # Activate virtual environment (Windows)
-uv pip install -r requirements.txt # Install dependencies
+uv pip install -r apps/api/requirements.txt # Install dependencies
 
-# Development commands
+# Development commands (IMPORTANT: Must activate environment first from root)
+source .venv/bin/activate        # ALWAYS activate environment first
+cd apps/api
 python app.py                    # Run development server
 python app.py --log-level DEBUG  # Run with debug logging
 python update_group_playlists.py # Run playlist update script manually
+
+# Or run commands in one line from root:
+source .venv/bin/activate && cd apps/api && python update_group_playlists.py
 pytest                          # Run all tests
 pytest tests/test_specific.py    # Run specific test file
 black .                         # Format Python code

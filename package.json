@@ -1,5 +1,5 @@
 {
-  "name": "spotify-social-app",
+  "name": "songs-of-a-feather",
   "version": "1.0.0",
   "private": true,
   "description": "Spotify social application with Flask API and Next.js frontend",
@@ -8,11 +8,11 @@
   ],
   "scripts": {
     "dev:web": "npm run dev --workspace=apps/web",
-    "dev:api": "cd apps/api && python app.py",
+    "dev:api": "source .venv/bin/activate && cd apps/api && python app.py",
     "build:web": "npm run build --workspace=apps/web",
     "lint:web": "npm run lint --workspace=apps/web",
-    "test:api": "cd apps/api && pytest",
-    "install:all": "npm install && cd apps/api && uv pip install -r requirements.txt"
+    "test:api": "source .venv/bin/activate && cd apps/api && pytest",
+    "install:all": "npm install && uv venv .venv && source .venv/bin/activate && uv pip install -r apps/api/requirements.txt"
   },
   "devDependencies": {
     "@types/node": "^20"

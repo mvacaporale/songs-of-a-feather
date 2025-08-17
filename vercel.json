@@ -29,11 +29,5 @@
       "src": "/(.*)",
       "dest": "apps/web/$1"
     }
-  ],
-  "crons": [
-    {
-      "path": "/api/cron/update-playlist",
-      "schedule": "0 0 * * 1"
-    }
   ]
 }

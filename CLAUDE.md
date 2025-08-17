@@ -77,7 +77,7 @@ isort .                         # Sort imports
 - **App Router** structure with TypeScript
 - **Supabase integration** for authentication
 - **Tailwind CSS** for styling
-- Environment-aware backend URL configuration (localhost:5000 for dev, Vercel for prod)
+- Environment-aware backend URL configuration (localhost:5000 for dev, /api for prod)
 - Key routes:
   - `/` - Landing page
   - `/dashboard` - Authenticated user dashboard
@@ -103,6 +103,19 @@ Both applications require environment configuration:
 ## Automated Playlist Updates
 
 GitHub Actions runs `update_group_playlists.py` every Monday at midnight UTC. The script updates all users' playlists with fresh tracks from followed users. Workflow file: `.github/workflows/update-playlists.yml`. Requires Supabase and Spotify credentials as GitHub repository secrets (setup: `.github/SECRETS_SETUP.md`).
+
+## Deployment
+
+The application is configured for deployment on Vercel with a monorepo structure:
+
+- **Frontend**: Deployed from `apps/web/` using `@vercel/next`
+- **Backend**: Deployed from `apps/api/` using `@vercel/python`
+- **API Routes**: Backend accessible at `/api/*` paths
+- **Cron Jobs**: Playlist updates scheduled via Vercel cron at `/api/cron/update-playlist`
+
+Configuration files:
+- `vercel.json` - Root deployment configuration for monorepo
+- `.vercelignore` - Files to exclude from deployment
 
 ## Testing
 

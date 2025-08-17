@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "apps/web/package.json",
+      "use": "@vercel/next",
+      "config": {
+        "projectSettings": {
+          "rootDirectory": "apps/web"
+        }
+      }
+    },
+    {
+      "src": "apps/api/app.py",
+      "use": "@vercel/python",
+      "config": {
+        "projectSettings": {
+          "rootDirectory": "apps/api"
+        }
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "apps/api/app.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "apps/web/$1"
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/update-playlist",
+      "schedule": "0 0 * * 1"
+    }
+  ]
+}

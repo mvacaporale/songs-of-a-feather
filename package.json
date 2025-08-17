@@ -1,0 +1,23 @@
+{
+  "name": "spotify-social-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Spotify social application with Flask API and Next.js frontend",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:web": "npm run dev --workspace=apps/web",
+    "dev:api": "cd apps/api && python app.py",
+    "build:web": "npm run build --workspace=apps/web",
+    "lint:web": "npm run lint --workspace=apps/web",
+    "test:api": "cd apps/api && pytest",
+    "install:all": "npm install && cd apps/api && uv pip install -r requirements.txt"
+  },
+  "devDependencies": {
+    "@types/node": "^20"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

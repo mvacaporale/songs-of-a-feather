@@ -1,0 +1,10 @@
+flask
+spotipy
+python-dotenv
+supabase
+flask_cors
+PyJWT==2.6.0  # Use a specific version that's compatible
+pytest
+pytest-ordering
+isort
+black
